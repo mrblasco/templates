@@ -1,0 +1,69 @@
+\documentclass[$if(fontsize)$$fontsize$$endif$]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx,psfrag,amsmath,amsfonts,verbatim}
+\usepackage{hyperref,natbib}
+
+% Tables
+\usepackage[small,bf]{caption}
+\usepackage{longtable,booktabs}
+\newcommand\tightlist{}
+
+% Page margins
+\usepackage{lipsum}
+\usepackage[margin=1in]{geometry} %\usepackage{fullpage}
+
+% Header & Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Memorandum}
+\rhead{Page \thepage}
+\rfoot{Last compiled \today}
+
+%% Raw code highlight
+$if(highlighting-macros)$
+$highlighting-macros$
+%% change fontsize of R code
+\let\oldShaded\Shaded
+\let\endoldShaded\endShaded
+\renewenvironment{Shaded}{\footnotesize\oldShaded}{\endoldShaded}
+$endif$
+
+
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+\date{}
+
+
+\begin{document}
+$if(title)$
+\maketitle
+\thispagestyle{fancy}
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+%\newpage
+$if(toc)$
+\tableofcontents
+\newpage
+$endif$
+
+$body$
+
+$if(natbib)$
+\newpage
+\bibliographystyle{alpha}
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+
+\end{document}

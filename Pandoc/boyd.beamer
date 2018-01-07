@@ -1,0 +1,120 @@
+\documentclass[10pt,mathserif]{beamer}
+% Source: Template for Stephen Boyd's class at Stanford
+% https://stanford.edu/class/ee364b/latex_templates/template_slides.tex
+\usepackage{graphicx,amsmath,amssymb,tikz,psfrag}
+%\usepackage{natbib} %biblatex
+
+% \input defs.tex
+
+% Font
+\usefonttheme{serif}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} %
+
+% Paragraph spacing
+\setlength{\parskip}{0.5cm}
+\setlength{\parindent}{0em}
+
+
+%% Change fontsize of output
+\let\oldverbatim\verbatim
+\let\endoldverbatim\endverbatim
+\renewenvironment{verbatim}{\footnotesize\oldverbatim}{\endoldverbatim}
+
+%% Tightlist
+\providecommand{\tightlist}{
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Two columns
+% https://stackoverflow.com/questions/15142134/slides-with-columns-in-pandoc
+\newcommand{\columnsbegin}{\begin{columns}}
+\newcommand{\columnsend}{\end{columns}}
+\usepackage{dcolumn}
+
+%% Raw code highlight
+$if(highlighting-macros)$
+$highlighting-macros$
+%% change fontsize of R code
+\let\oldShaded\Shaded
+\let\endoldShaded\endShaded
+\renewenvironment{Shaded}{\footnotesize\oldShaded}{\endoldShaded}
+$endif$
+
+
+%% formatting
+
+\mode<presentation>
+{
+\usetheme{default}
+}
+\setbeamertemplate{navigation symbols}{}
+\usecolortheme[rgb={0.13,0.28,0.59}]{structure}
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{frametitle} {
+	\begin{center}
+	  {\large\bf \insertframetitle}
+	\end{center}
+}
+
+\newcommand\footlineon{
+  \setbeamertemplate{footline} {
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,leftskip=.8cm,rightskip=.6cm]{structure}
+      \footnotesize \insertshorttitle
+      \hfill
+      {\insertframenumber}
+    \end{beamercolorbox}
+    \vskip 0.45cm
+  }
+}
+\footlineon
+
+\AtBeginSection[] 
+{ 
+	\begin{frame}<beamer> 
+		\frametitle{Outline} 
+		\tableofcontents[currentsection,currentsubsection] 
+	\end{frame} 
+} 
+
+%% Graphics
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight0.8\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+
+%% begin presentation
+
+$if(title)$
+\title[$if(shorttitle)$$shorttitle$$endif$]{\large \bfseries $title$}
+$endif$
+$if(subtitle)$
+\subtitle{$subtitle$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(logo)$\logo{$logo$}$endif$
+$if(institute)$
+\institute{$for(institute)$$institute$$sep$ \and $endfor$}
+$endif$
+\date{$date$}
+
+
+\begin{document}
+
+\frame{
+\thispagestyle{empty}
+\titlepage
+}
+
+$body$
+
+
+\end{document}

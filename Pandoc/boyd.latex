@@ -1,0 +1,64 @@
+\documentclass[$if(fontsize)$$fontsize$$endif$]{article}
+\usepackage{fullpage,graphicx,psfrag,amsmath,amsfonts,amsthm,verbatim}
+\usepackage[small,bf]{caption}
+\usepackage{hyperref,natbib}
+\usepackage{longtable,booktabs}
+\newcommand\tightlist{}
+
+% Figure caption on top
+\usepackage{floatrow}
+\floatsetup[figure]{capposition=top}
+
+%\input defs.tex
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+
+%% Raw code highlight
+$if(highlighting-macros)$
+$highlighting-macros$
+%% change fontsize of R code
+\let\oldShaded\Shaded
+\let\endoldShaded\endShaded
+\renewenvironment{Shaded}{\footnotesize\oldShaded}{\endoldShaded}
+$endif$
+
+
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+%\newpage
+$if(toc)$
+\tableofcontents
+\newpage
+$endif$
+
+$body$
+
+$if(natbib)$
+\newpage
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+
+\end{document}
