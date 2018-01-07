@@ -1,0 +1,21 @@
+---
+title: "[TITLE HERE]"
+author: "[AUTHOR HERE]"
+date: \today
+
+output: 
+    pdf_document:
+        citation_package: natbib
+        template: "~/Templates/Pandoc/paper.latex"
+
+fontsize: 12pt
+setspace: \doublespacing
+
+bibliography: "/Users/ablasco/Documents/library_minimal.bib"
+
+header-includes:
+   - \usepackage{amsthm,amsmath,array}
+   - \newtheorem{proposition}{Proposition}
+
+---
+
